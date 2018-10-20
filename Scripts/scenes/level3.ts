@@ -3,6 +3,7 @@ namespace scenes {
       // private instance variable
       private _player: objects.Player;
       private _ocean: objects.Ocean;
+      private _ocean2: objects.Ocean;
       private _island: objects.Island;
   
       private _cloudNum: number;
@@ -31,7 +32,7 @@ namespace scenes {
   
         // Fill the Cloud Array with Clouds
         for (let count = 0; count < this._cloudNum; count++) {
-          this._clouds[count] = new objects.Cloud();
+          this._clouds[count] = new objects.Cloud(3);
         }
   
         // play background engine sound when the level starts
@@ -44,6 +45,7 @@ namespace scenes {
   
       public Update(): void {
         this._ocean.Update();
+        this._ocean2.Update();
         this._player.Update();
         this._island.Update();
   
@@ -68,9 +70,12 @@ namespace scenes {
         // adds ocean to the scene
         this._ocean = new objects.Ocean(3);
         this.addChild(this._ocean);
-  
+
+        this._ocean2 = new objects.Ocean(3, 960);
+        this.addChild(this._ocean2);
+
         // adds island to the scene
-        this._island = new objects.Island();
+        this._island = new objects.Island(3);
         this.addChild(this._island);
   
         // adds player to the scene

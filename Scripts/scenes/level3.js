@@ -31,7 +31,7 @@ var scenes;
             this._clouds = new Array();
             // Fill the Cloud Array with Clouds
             for (var count = 0; count < this._cloudNum; count++) {
-                this._clouds[count] = new objects.Cloud();
+                this._clouds[count] = new objects.Cloud(3);
             }
             // play background engine sound when the level starts
             this._engineSound = createjs.Sound.play("engineSound");
@@ -42,6 +42,7 @@ var scenes;
         Level3.prototype.Update = function () {
             var _this = this;
             this._ocean.Update();
+            this._ocean2.Update();
             this._player.Update();
             this._island.Update();
             // check if player and island are colliding
@@ -62,8 +63,10 @@ var scenes;
             // adds ocean to the scene
             this._ocean = new objects.Ocean(3);
             this.addChild(this._ocean);
+            this._ocean2 = new objects.Ocean(3, 960);
+            this.addChild(this._ocean2);
             // adds island to the scene
-            this._island = new objects.Island();
+            this._island = new objects.Island(3);
             this.addChild(this._island);
             // adds player to the scene
             this._player = new objects.Player(3);

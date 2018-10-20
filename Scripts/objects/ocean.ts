@@ -1,15 +1,17 @@
 module objects {
     export class Ocean extends objects.GameObject {
         // private instance variables
-        private speed:number;
+        private _speed:number;
         private _level:number;
+        private _xOffset:number;
 
         // public properties
 
         // constructor
-        constructor(level:number = 1) {
+        constructor(level:number = 1, xOffset:number = 0) {
             super("ocean");
             this._level = level;
+            this._xOffset = xOffset;
             switch(this._level) {
                 case 2:
                 case 3:
@@ -28,12 +30,12 @@ module objects {
                 }
                 break;
                 case 2:
-                if(this.x <= -800) {
+                if(this.x <= -960 + this._xOffset) {
                     this.Reset();
                 }
                 break;
                 case 3:
-                if(this.x >=0) {
+                if(this.x >=0 + this._xOffset) {
                     this.Reset();
                 }
                 break;
@@ -44,13 +46,13 @@ module objects {
         private _move():void {
             switch(this._level) {
                 case 1:
-                this.y += this.speed;
+                this.y += this._speed;
                 break;
                 case 2:
-                this.x -= this.speed;
+                this.x -= this._speed;
                 break;
                 case 3:
-                this.x += this.speed;
+                this.x += this._speed;
                 break;
             }
         }
@@ -63,11 +65,11 @@ module objects {
                 this.y = -960;
                 break;
                 case 2:
-                this.x = 0;
+                this.x = 0 + this._xOffset;
                 this.y = 480;
                 break;
                 case 3:
-                this.x = -800;
+                this.x = -960 + this._xOffset;
                 this.y = 480;
                 break;
             }
@@ -75,7 +77,7 @@ module objects {
         
         public Start(): void {
             this.Reset();
-            this.speed = 5; // 5 px per frame
+            this._speed = 5; // 5 px per frame
         }
 
         public Update(): void {
