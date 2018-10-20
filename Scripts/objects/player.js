@@ -15,11 +15,12 @@ var objects;
 (function (objects) {
     var Player = /** @class */ (function (_super) {
         __extends(Player, _super);
-        // private instance variables
         // public properties
         // constructors
-        function Player() {
+        function Player(level) {
+            if (level === void 0) { level = 1; }
             var _this = _super.call(this, "plane") || this;
+            _this._level = level;
             _this.Start();
             return _this;
         }
@@ -28,10 +29,27 @@ var objects;
         Player.prototype.Start = function () {
             this.regX = this.HalfWidth;
             this.regY = this.HalfHeight;
-            this.y = 435;
+            switch (this._level) {
+                case 1:
+                    this.y = 435;
+                    break;
+                case 2:
+                    this.x = 45;
+                    this.rotation = 90;
+                    break;
+                case 3:
+                    this.x = 595;
+                    this.rotation = -90;
+                    break;
+            }
         };
         Player.prototype.Update = function () {
-            this.x = managers.Game.stage.mouseX;
+            if (this._level == 1) {
+                this.x = managers.Game.stage.mouseX;
+            }
+            else {
+                this.y = managers.Game.stage.mouseY;
+            }
             this._updatePosition();
             // checks the right boundary
             if (this.x > 640 - this.HalfWidth) {
@@ -40,6 +58,14 @@ var objects;
             // check the left boundary
             if (this.x < this.HalfWidth) {
                 this.x = this.HalfWidth;
+            }
+            // check the bottom boundary
+            if (this.y > 480 - this.HalfHeight) {
+                this.y = 480 - this.HalfHeight;
+            }
+            // check the top boundary
+            if (this.y < this.HalfHeight) {
+                this.y = this.HalfHeight;
             }
         };
         Player.prototype.Reset = function () {

@@ -60,13 +60,13 @@ var scenes;
         Level3.prototype.Main = function () {
             var _this = this;
             // adds ocean to the scene
-            this._ocean = new objects.Ocean();
+            this._ocean = new objects.Ocean(3);
             this.addChild(this._ocean);
             // adds island to the scene
             this._island = new objects.Island();
             this.addChild(this._island);
             // adds player to the scene
-            this._player = new objects.Player();
+            this._player = new objects.Player(3);
             this.addChild(this._player);
             // adds Each Cloud in the Cloud Array to the Scene
             this._clouds.forEach(function (cloud) {

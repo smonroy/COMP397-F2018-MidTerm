@@ -49,7 +49,7 @@ module scenes {
         this.addChild(this._startButton);
 
         this._startButton.on("click", ()=>{
-            managers.Game.currentState = config.Scene.LEVEL1;
+            managers.Game.currentState = config.Scene.LEVEL2;
         });
 
     }

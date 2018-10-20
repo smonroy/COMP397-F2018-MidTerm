@@ -44,7 +44,7 @@ var scenes;
             this.addChild(this._welcomeLabel);
             this.addChild(this._startButton);
             this._startButton.on("click", function () {
-                managers.Game.currentState = config.Scene.LEVEL1;
+                managers.Game.currentState = config.Scene.LEVEL2;
             });
         };
         return Start;

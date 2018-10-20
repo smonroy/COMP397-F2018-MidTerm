@@ -17,27 +17,71 @@ var objects;
         __extends(Ocean, _super);
         // public properties
         // constructor
-        function Ocean() {
+        function Ocean(level) {
+            if (level === void 0) { level = 1; }
             var _this = _super.call(this, "ocean") || this;
+            _this._level = level;
+            switch (_this._level) {
+                case 2:
+                case 3:
+                    _this.rotation = -90;
+                    break;
+            }
             _this.Start();
             return _this;
         }
         // private methods
         Ocean.prototype._checkBounds = function () {
-            if (this.y >= 0) {
-                this.Reset();
+            switch (this._level) {
+                case 1:
+                    if (this.y >= 0) {
+                        this.Reset();
+                    }
+                    break;
+                case 2:
+                    if (this.x <= -800) {
+                        this.Reset();
+                    }
+                    break;
+                case 3:
+                    if (this.x >= 0) {
+                        this.Reset();
+                    }
+                    break;
             }
         };
         Ocean.prototype._move = function () {
-            this.y += this.verticalSpeed;
+            switch (this._level) {
+                case 1:
+                    this.y += this.speed;
+                    break;
+                case 2:
+                    this.x -= this.speed;
+                    break;
+                case 3:
+                    this.x += this.speed;
+                    break;
+            }
         };
         // public methods
         Ocean.prototype.Reset = function () {
-            this.y = -960;
+            switch (this._level) {
+                case 1:
+                    this.y = -960;
+                    break;
+                case 2:
+                    this.x = 0;
+                    this.y = 480;
+                    break;
+                case 3:
+                    this.x = -800;
+                    this.y = 480;
+                    break;
+            }
         };
         Ocean.prototype.Start = function () {
             this.Reset();
-            this.verticalSpeed = 5; // 5 px per frame
+            this.speed = 5; // 5 px per frame
         };
         Ocean.prototype.Update = function () {
             this._move();

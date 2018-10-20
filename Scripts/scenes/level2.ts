@@ -66,7 +66,7 @@ namespace scenes {
 
     public Main(): void {
       // adds ocean to the scene
-      this._ocean = new objects.Ocean();
+      this._ocean = new objects.Ocean(2);
       this.addChild(this._ocean);
 
       // adds island to the scene
@@ -74,7 +74,7 @@ namespace scenes {
       this.addChild(this._island);
 
       // adds player to the scene
-      this._player = new objects.Player();
+      this._player = new objects.Player(2);
       this.addChild(this._player);
 
       // adds Each Cloud in the Cloud Array to the Scene
