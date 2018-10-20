@@ -23,6 +23,12 @@ var managers;
             set: function (newValue) {
                 this._score = newValue;
                 this._scoreLabel.text = "Score: " + this._score;
+                if (this._score >= 500 && managers.Game.currentState == config.Scene.LEVEL1) {
+                    managers.Game.currentState = config.Scene.LEVEL2;
+                }
+                if (this._score >= 1000 && managers.Game.currentState == config.Scene.LEVEL2) {
+                    managers.Game.currentState = config.Scene.LEVEL3;
+                }
             },
             enumerable: true,
             configurable: true

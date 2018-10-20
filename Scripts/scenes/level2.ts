@@ -1,5 +1,5 @@
 namespace scenes {
-  export class Play extends objects.Scene {
+  export class Level2 extends objects.Scene {
     // private instance variable
     private _player: objects.Player;
     private _ocean: objects.Ocean;
@@ -15,7 +15,7 @@ namespace scenes {
     // constructor
     constructor() {
       super();
-
+      console.log("Level2");
       this.Start();
     }
 
@@ -24,7 +24,7 @@ namespace scenes {
     // public methods
 
     public Start(): void {
-      this._cloudNum = 3;
+      this._cloudNum = 2;
 
       // Instantiates a new Array container of Type objects.Cloud
       this._clouds = new Array<objects.Cloud>();

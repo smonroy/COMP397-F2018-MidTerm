@@ -55,7 +55,7 @@ namespace scenes {
       this.addChild(this._restartButton);
 
       this._restartButton.on("click", function() {
-        managers.Game.currentState = config.Scene.PLAY;
+        managers.Game.currentState = config.Scene.LEVEL1;
         managers.Game.scoreBoard.Reset();
       });
 
